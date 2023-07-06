@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./register.css";
+import { Alert, Button, Form, FormGroup } from "react-bootstrap";
+import Select from "react-select/dist/declarations/src/Select";
 
 const skills = [
     { value: "react", label: "React" },
@@ -52,6 +54,74 @@ const Register = () => {
         } else {
             setErrorMsg("All the field are required.");
         }
-    }
+    };
+
+    return (
+        <div className="registration">
+            <div className="container">
+                <h2 className="title">Register</h2>
+                <Form onSubmit={handleFormSubmit}>
+                    <h6 className="subtitle">
+                        Please enter your details below to reigster yourself.
+                    </h6>
+                    {successMsg && <Alert variant="success">{successMsg}</Alert>}
+                    {errorMsg && <Alert variant="danger">{errorMsg}</Alert>}
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter your name"
+                            name="name"
+                            value={state.name}
+                            onChange={handleInputChange}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="email">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter your email"
+                            name="email"
+                            value={state.email}
+                            onChange={handleInputChange}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Enter your password"
+                            name="password"
+                            value={state.password}
+                            onChange={handleInputChange}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="password">
+                        <Form.Label>Select yoru skills</Form.Label>
+                        <Select
+                            options={skills}
+                            isMulti
+                            value={selectedSkill}
+                            onChange={(selectedOption) => setSelectedSkill(selectedOption)}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="newsletter">
+                        <Form.Check
+                            type="checkbox"
+                            label="Subscribe to our newsletter"
+                            checked={subscribe}
+                            onChange={(event) => setSubscribe(Boolean(event.target.value))}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Button variant="secondary" type="submit">
+                            Register
+                        </Button>
+                    </Form.Group>
+                </Form>
+            </div>
+        </div>
+    )
 };
 
+export default Register;
