@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
+import Select from "react-select";
 import "./register.css";
-import { Alert, Button, Form, FormGroup } from "react-bootstrap";
-import Select from "react-select/dist/declarations/src/Select";
 
 const skills = [
     { value: "react", label: "React" },
@@ -26,7 +26,7 @@ const Register = () => {
     const [errorMsg, setErrorMsg] = useState("");
 
     const handleInputChange = (event) => {
-        const { name, value } event.target;
+        const { name, value } = event.target;
         setState((prevState) => {
             return {
                 ...prevState,
@@ -97,7 +97,7 @@ const Register = () => {
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="password">
-                        <Form.Label>Select yoru skills</Form.Label>
+                        <Form.Label>Select your skills</Form.Label>
                         <Select
                             options={skills}
                             isMulti
