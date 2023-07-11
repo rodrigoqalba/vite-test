@@ -13,7 +13,9 @@ describe("Register component", () => {
 
   it("should show error message when all the fields are not entered", async () => {
     render(<Register />);
-    const buttonElement = screen.getByRole("button");
+    const buttonElement = screen.getByRole("button", {
+        name: /register/i
+    });
     await userEvent.click(buttonElement);
     const alertElement = screen.getByRole("alert");
     expect(alertElement).toBeInTheDocument();
@@ -27,7 +29,9 @@ describe("Register component", () => {
 
   it("should show success message when the registration is successful.", async () => {
     render(<Register />);
-    const buttonElement = screen.getByRole("button");
+    const buttonElement = screen.getByRole("button", {
+        name: /register/i
+    });
     await userEvent.click(buttonElement);
     const alertElement = screen.getByRole("alert");
     expect(alertElement).toBeInTheDocument();
